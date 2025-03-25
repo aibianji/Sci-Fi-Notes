@@ -1,0 +1,60 @@
+# 项目背景
+这是一个基于 Vue 3 + TypeScript 开发的科幻风格 Windows 便签工具前端项目，采用暗色调（深空蓝 #0A192F、炭黑 #0D1117）与霓虹光效（青蓝 #00D4FF、紫红 #FF00D4）的 UI 设计。核心要求：
+- 轻量化：安装包体积控制在 10MB 以内
+- 高性能：60FPS 流畅交互，虚拟滚动优化
+- 科幻交互：动态光影、悬浮动画、CSS 变量控制主题
+
+## 技术栈规范
+- **框架**: Vue 3 + Composition API
+- **状态管理**: Pinia (优先使用 setup 语法)
+- **构建工具**: Vite
+- **HTTP 客户端**: Axios
+- **样式系统**: CSS 变量 + SCSS 预处理器
+
+## TypeScript 规范
+- 启用严格模式 (`strict: true`) 
+- 禁止隐式 `any` 类型 (`noImplicitAny: true`)
+- Props 验证：使用运行时类型校验 + 接口定义
+- 事件类型：自定义事件需声明 `EventPayload` 类型
+- 优先使用 `interface` 而非 `type`
+
+## Vue 组件规范
+### 结构
+- 组件文件按 `<script setup>` → `<template>` → `<style scoped>` 顺序排列
+- 命名约定：
+  - 组件名：PascalCase (如 `SciNoteCard`)
+  - Props：camelCase 
+  - 事件：kebab-case (如 `@save-note`)
+
+### 性能优化
+- 列表渲染使用 `v-memo` 和 `v-virtual-scroller` 
+- 静态内容使用 `v-once`
+- 动画使用 `<transition-group>` 指令
+
+## 样式规则
+### 颜色变量
+- 主暗色调: `--primary-dark: #0A192F`
+- 次级暗色: `--secondary-dark: #0D1117`
+- 霓虹青蓝: `--neon-cyan: #00D4FF`
+- 霓虹紫红: `--neon-magenta: #FF00D4`
+
+### 动画
+- 悬停过渡: `all 0.3s cubic-bezier(0.4, 0, 0.2, 1)`
+- 入场效果: 使用 `slide-fade` 动画
+- 光效实现: 优先使用 `mix-blend-mode: screen` 
+
+## 核心组件实现指南
+### 快捷键管理组件 (SciShortcutManager)
+- 使用 Composition API 封装快捷键逻辑
+- 热键冲突检测：调用系统级 API 扫描全局快捷键
+- UI 要求：霓虹边框 + 输入聚焦紫红色过渡
+
+### 便签编辑器 (SciNoteEditor)
+- 富文本：集成 ProseMirror 核心库
+- 剪贴板监听：通过 Clipboard API 实现
+- 截图处理：Canvas 压缩至 80% 质量
+
+## Git 工作流
+- 提交格式：Conventional Commits
+- 分支策略：Git-flow
+- 预提交检查：ESLint + TypeScript 类型校验

@@ -1,0 +1,157 @@
+// 科幻主题颜色变量
+:root {
+  // 主色调
+  --primary-dark: #0A192F; // 深空蓝
+  --secondary-dark: #0D1117; // 炭黑
+  --neon-cyan: #00D4FF; // 霓虹青蓝
+  --neon-magenta: #FF00D4; // 霓虹紫红
+  
+  // 功能色
+  --success: #00E676;
+  --warning: #FFC107;
+  --error: #F44336;
+  
+  // 文本颜色
+  --text-primary: rgba(255, 255, 255, 0.9);
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --text-tertiary: rgba(255, 255, 255, 0.5);
+  
+  // 圆角
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+  
+  // 阴影效果
+  --neon-cyan-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
+  --neon-magenta-shadow: 0 0 15px rgba(255, 0, 212, 0.5);
+  
+  // 间距
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  
+  // 动画时间
+  --transition-fast: 0.2s;
+  --transition-normal: 0.3s;
+  --transition-slow: 0.5s;
+  
+  // 动画曲线
+  --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+  
+  // 布局变量
+  --header-height: 60px;
+  --sidebar-width: 250px;
+  --content-max-width: 1200px;
+  
+  // 层级
+  --z-index-dropdown: 100;
+  --z-index-sticky: 200;
+  --z-index-fixed: 300;
+  --z-index-modal: 400;
+  --z-index-popover: 500;
+  --z-index-tooltip: 600;
+}
+
+// 科幻混合器
+@mixin neon-border($color: var(--neon-cyan)) {
+  border: 1px solid $color;
+  box-shadow: 0 0 10px rgba($color, 0.5);
+}
+
+@mixin neon-text($color: var(--neon-cyan)) {
+  color: $color;
+  text-shadow: 0 0 10px rgba($color, 0.5);
+}
+
+@mixin gradient-background {
+  background: linear-gradient(135deg, var(--primary-dark), var(--secondary-dark));
+}
+
+@mixin hover-glow($color: var(--neon-cyan)) {
+  transition: all var(--transition-normal) var(--ease-default);
+  
+  &:hover {
+    box-shadow: 0 0 15px rgba($color, 0.8);
+    border-color: $color;
+  }
+}
+
+@mixin flow-border {
+  position: relative;
+  overflow: hidden;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 200%;
+    height: 2px;
+    background: linear-gradient(90deg, 
+                var(--neon-cyan), 
+                var(--neon-magenta), 
+                var(--neon-cyan));
+    animation: flow 3s linear infinite;
+  }
+  
+  @keyframes flow {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(50%);
+    }
+  }
+}
+
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == "sm" {
+    @media (min-width: 576px) { @content; }
+  } @else if $breakpoint == "md" {
+    @media (min-width: 768px) { @content; }
+  } @else if $breakpoint == "lg" {
+    @media (min-width: 992px) { @content; }
+  } @else if $breakpoint == "xl" {
+    @media (min-width: 1200px) { @content; }
+  }
+}
+
+@mixin custom-scrollbar {
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: rgba(0, 212, 255, 0.3);
+    border-radius: 4px;
+    
+    &:hover {
+      background: rgba(0, 212, 255, 0.5);
+    }
+  }
+}
+
+@mixin keycap {
+  display: inline-block;
+  padding: 2px 6px;
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--neon-cyan);
+  border-radius: 4px;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2);
+  font-family: monospace;
+  font-size: 0.85em;
+}
+
+@mixin disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+} 

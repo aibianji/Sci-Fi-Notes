@@ -1,0 +1,38 @@
+[package]
+name = "sci-fi-sticky-notes"
+version = "0.1.0"
+description = "科幻风格的便签应用"
+authors = ["sci-fi-team"]
+license = ""
+repository = ""
+edition = "2021"
+rust-version = "1.70.0"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+name = "app_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "1.5.0", features = [] }
+
+[dependencies]
+serde_json = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+log = "0.4"
+tauri = { version = "1.5.0", features = [ "notification-all", "shell-open", "system-tray", "window-all", "global-shortcut-all", "path-all", "fs-all"] }
+winreg = { version = "0.10", optional = false }
+
+[features]
+# 默认情况下，cargo build 会使用以下选项
+default = [ "custom-protocol" ]
+# 在生产构建中启用自定义协议
+custom-protocol = [ "tauri/custom-protocol" ]
+
+[profile.release]
+# 优化构建大小
+panic = "abort"
+codegen-units = 1
+lto = true
+opt-level = "s"

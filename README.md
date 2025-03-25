@@ -95,7 +95,7 @@ graph TD
 5. 发起Pull Request
 
 ## 📜 许可协议
-[MIT License](LICENSE) © 2023 Your Name
+[MIT License](LICENSE) © 2023 AIbianji
 
 ---
 

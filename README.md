@@ -5,7 +5,7 @@
 [![Build Size](https://img.shields.io/badge/Install%20Size-≤50MB-success)](https://vitejs.dev/)
 ![Sci-Fi UI](https://img.shields.io/badge/Style-Cyberpunk-ff69b4)
 
-跨平台科幻风格效率工具，融合暗物质美学与流体交互体验。[[下载体验]](https://example.com) | [[在线演示]](https://demo.example.com)
+跨平台科幻风格效率工具，融合暗物质美学与流体交互体验。
 
 ![主界面截图](https://via.placeholder.com/800x500/0A192F/00D4FF?text=StellarNotes+UI+Preview)
 
